@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jt-education-frontend-management
+  namespace: ${JT_MGM_NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jt-education-frontend-management
+  template:
+    metadata:
+      labels:
+        app: jt-education-frontend-management
+    spec:
+    #   affinity:
+    #     nodeAffinity:
+    #       requiredDuringSchedulingIgnoredDuringExecution:
+    #         nodeSelectorTerms:
+    #         - matchExpressions:
+    #           - key: node
+    #             operator: In
+    #             values:
+    #             - cpu
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: jt-education-frontend-management
+          image: ${HARBOR_BASE_URL}/${JT_MGM_NAMESPACE}/jt-education-frontend-management:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+          - name: NACOS_ADDRESS
+            value: nacos-headless:8848
+          - name: SERVER_PORT
+            value: "8080"
+          - name: KEYCLOAK_URL
+            valueFrom:
+              configMapKeyRef:
+                name: env-configure
+                key: KEYCLOAK_URL
