@@ -1,6 +1,6 @@
 {
   "name": "ejt-cli",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "九天平台通用cli脚手架",
   "main": "index.js",
   "bin": {

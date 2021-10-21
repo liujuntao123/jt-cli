@@ -2,7 +2,8 @@ import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { notification } from 'ant-design-vue';
 import { proxyEnv } from '@/config';
 
-const baseURL = process.env.NODE_ENV === 'development' ? `/api/${proxyEnv}` : '';
+const isDev = process.env.NODE_ENV === 'development';
+const baseURL = isDev ? `/api/${proxyEnv}` : '';
 
 export const axios = Axios.create({
   baseURL: baseURL,
@@ -51,7 +52,7 @@ function request(url: string, options: Options = {}): Promise<AxiosResponse<any>
     data: ['PUT', 'POST', 'DELETE'].includes(method) ? data : undefined,
   } as AxiosRequestConfig)
     .then((res) => {
-      if (useError && res.data.errorCode === '-500') {
+      if (isDev && useError && res.data.errorCode === '-500') {
         notification.error({
           message: '系统错误',
           description: `${res.config.url}: ${res.data.errorMessage}`,

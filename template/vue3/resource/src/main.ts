@@ -8,6 +8,7 @@ import './assets/style/theme.less'; // 用于覆盖上面定义的变量
 import antd from 'ant-design-vue';
 import jtIcon from './lib/jtIcon';
 import jtComponents from './lib/jtComponents';
+import './envSetting';
 
 import '@/prefix';
 

@@ -6,7 +6,7 @@
           <img v-if="!collapsed" :src="logo" alt="" />
           <img class="collapsed" v-else :src="jtLogo" alt="" />
         </a>
-        <p v-if="!collapsed" class="title">九天·毕昇运营管理平台</p>
+        <p v-if="!collapsed" class="title">{{ title }}</p>
         <side-menu></side-menu>
       </a-layout-sider>
       <a-layout class="layout-main" :style="{ width: `calc(100% - ${collapsed ? 80 : 200}px)`, left: `${collapsed ? 80 : 200}px` }">
@@ -31,11 +31,11 @@ export default defineComponent({
     sideMenu,
   },
   setup() {
-    const portalUrl = ref(config.portalUrl);
     const collapsed = ref(false);
     return {
-      portalUrl,
       collapsed,
+      portalUrl: (window as any).envSetting?.portalUrl || config.portalUrl,
+      title: (window as any).envSetting?.title || config.title,
     };
   },
   data() {
