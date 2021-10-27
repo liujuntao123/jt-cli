@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/home/Home.vue';
 import NoAuth from '@/views/no-auth.vue';
 import { checkAuth } from '@/utils/keycloak';
+import Liu from '@/views/liujuntao.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,6 +14,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/liujuntao',
+    name: '刘君涛',
+    component: Liu,
   },
   {
     path: '/',

@@ -19,4 +19,9 @@ export default [
     name: '二级页面',
     link: '/pages',
   },
+  {
+    icon: 'iconshuati',
+    name: '刘君涛',
+    link: '/liujuntao',
+  },
 ];

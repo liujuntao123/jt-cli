@@ -25,9 +25,7 @@ export const PaginationProps = () => ({
   pageSize: PropTypes.number.def(10),
   pageSizeOptions: PropTypes.array.def(['5', '10', '20']),
   showQuickJumper: withUndefined(PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object])),
-  showSizeOptions: withUndefined(PropTypes.looseBool.def(true)),
-  // changePageSize: PropTypes.func,
-  // changePageNum: PropTypes.func,
+  showSizeOptions: PropTypes.looseBool.def(true),
   'onUpdate:pageNum': PropTypes.func,
   'onUpdate:pageSize': PropTypes.func,
 });
@@ -38,11 +36,11 @@ export default defineComponent({
   setup(props) {},
   methods: {
     changePageSize(size) {
-      console.log(size);
       this.$emit('update:pageSize', size);
       this.$emit('changePageSize', size);
     },
     changePageNum(pageNum) {
+      console.log(pageNum);
       this.$emit('update:pageNum', pageNum);
       this.$emit('changePageNum', pageNum);
     },
